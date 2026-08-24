@@ -2,18 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <script>
-      (function () {
-        var p = location.pathname || "";
-        if (p === "/stayline" || p.indexOf("/stayline/") === 0) {
-          sessionStorage.setItem(
-            "stayline-redirect",
-            p + location.search + location.hash,
-          );
-          location.replace("/stayline/");
-        }
-      })();
-    </script>
     <link rel="icon" type="image/svg+xml" href="/awardbound/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
