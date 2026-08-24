@@ -1,0 +1,27 @@
+name: assemble-stayline
+
+on:
+  push:
+    paths:
+      - "stayline/assets/chunks/**"
+      - ".github/workflows/assemble-stayline.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Concatenate Stayline bundle
+        run: |
+          mkdir -p stayline/assets
+          cat stayline/assets/chunks/part-* > stayline/assets/index-DG2km2dV.js
+          test -s stayline/assets/index-DG2km2dV.js
+          wc -c stayline/assets/index-DG2km2dV.js
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Assemble Stayline JS bundle
+          file_pattern: stayline/assets/index-DG2km2dV.js
